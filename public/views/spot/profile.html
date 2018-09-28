@@ -12,7 +12,7 @@
             <h4 class="d-flex justify-content-between align-items-center mb-3">
                 <span class="text-muted">Escolha <b>the best playlist in the world.</b></span>
             </h4>
-            <div class="list-group" style="overflow:auto; height:365px;">
+            <div class="list-group" style="overflow:auto; height:480px;">
 
                 <a href="#" ng-repeat="p in playlists" class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
@@ -33,11 +33,9 @@
             </div>
         </div>
         <div class="col-md-6 order-md-1">
-            <center>
                 <h4 class="mb-3">Meu Perfil</h4>
-            </center>
             <div class="row meu-card">
-                <div class="card" style="width: 18rem;">
+                <div class="card mb-3">
                     <img class="card-img-top" ng-src="{{urlImgProfile}}" alt="profile picture">
                     <div class="card-body">
                         <h5 class="card-title">{{profile.display_name}} - {{profile.country}}</h5>
