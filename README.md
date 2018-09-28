@@ -1,4 +1,4 @@
-![Logo](https://github.com/pgsilva/spotifyJs/blob/master/logo-rick.png)
+![Logo](https://github.com/pgsilva/spotifyJs/blob/master/logo-rick.jpg)
 
 # spotifyJs
 o mundo depende da música e de NodeJs
