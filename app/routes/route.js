@@ -7,7 +7,7 @@ module.exports = function (app) {
     app.get('/api/seassion', api.getSessionUp);
 
     app.post('/api/profile', api.getProfile);
-
+    app.post('/api/follow/playlist', api.followPlaylist);
 
     //config de rotas de refresh
     app.post('/api/refresh/playlist', api.refreshPlaylist);

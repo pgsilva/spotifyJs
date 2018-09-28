@@ -5,6 +5,7 @@ var querystring = require('querystring');
 var client_id = '09173ed65a9e472fb04d65b67d4bb470'; // Your client id
 var client_secret = '2e5be889c0b74cd7aeb907eb66d895b3'; // Your secret
 var redirect_uri = 'http://localhost:3000/api/callback'; // Your redirect uri
+var playlistToken = 'BQCc621aQeoE-6II90df-G3gvyLkXl4bjGuv266mlJ3gKnb2idODYqLuCYPC3KWHcrTOk_BoMZxlvJTe_cDAPbH_Lp_p13KGJvFFedt3x1R231iDlshAX0al5oTsBr-wiNe_ZjDwSqaYTOmaepRoscaYUH0WrmoPFioJ_q4nujtZ5YbgEMTluZZs4nBodCXIZXjhcnaeIdi1jm8XKHf8uPiXIwhzvnIOClU';
 
 var api = {};
 var resultSeassion = "";
@@ -117,12 +118,12 @@ function getSession(access_token, refresh_token) {
         "access_token": access_token
     };
 
-    console.log(" OLHA AQUI " + resultSeassion.access_token);
+    console.log(" OLHA AQUI " + resultSeassion.refresh_token);
     return resultSeassion;
 }
 
 api.getProfile = function (req, res) {
-    console.log("getProfile: " + req);
+    //console.log("getProfile: " + req);
 
     var access_token = req.body.access_token,
         refresh_token = req.body.refresh_token;
@@ -135,7 +136,7 @@ api.getProfile = function (req, res) {
 
     // use the access token to access the Spotify Web API
     request.get(options, function (error, response, body) {
-        console.log(body);
+        //console.log(body);
         res.json(body);
     });
 
@@ -147,15 +148,41 @@ api.refreshPlaylist = function (req, res) {
         refresh_token = req.body.refresh_token;
 
     var options = {
-        url: 'https://api.spotify.com/v1/users/'+ req.body.id + '/playlists',
+        url: 'https://api.spotify.com/v1/users/' + req.body.id + '/playlists',
         headers: { 'Authorization': 'Bearer ' + access_token },
         json: true
     };
     // use the access token to access the Spotify Web API
     request.get(options, function (error, response, body) {
-        console.log(body);
+        //console.log(body);
         res.json(body);
     });
+};
+
+api.followPlaylist = function (req, res) {
+    console.log(req.body.id);
+    var access_token = playlistToken,
+        refresh_token = req.body.refresh_token;
+
+    var scope = 'user-read-private user-read-email playlist-modify playlist-modify-private' ;
+    var options = {
+        url: 'https://api.spotify.com/v1/playlists/' + req.body.id + '/followers',
+        headers: { 'Authorization': 'Bearer ' + access_token },
+        form: {
+            public: false
+        },
+        
+        json: true
+    };
+
+    request.put(options, function (error, response, body) {
+       
+        console.log(body);
+        var seguiu = { data: "Deu tudo certo por aqui e ai ?" }
+        res.json(seguiu);
+
+    });
+
 };
 
 module.exports = api;

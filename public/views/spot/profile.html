@@ -12,35 +12,31 @@
             <h4 class="d-flex justify-content-between align-items-center mb-3">
                 <span class="text-muted">Escolha <b>the best playlist in the world.</b></span>
             </h4>
-            <div class="list-group" style="overflow:auto; height:480px;">
+            <div class="list-group" style="overflow:auto; height:370px;">
 
                 <a href="#" ng-repeat="p in playlists" class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">{{p.name}}</h5>
                         <small>{{p.tracks.total}} músicas</small>
                     </div>
-                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus
-                        varius blandit.</p>
-                    <small>Donec id elit non mi porta.</small>
+                    <small>the best playlist in the world.</small>
                 </a>
             </div><br>
 
 
             <div class="input-group">
                 <button class="btn btn-lg btn-block butaologin" type="button" style="background-color: #1ED760; color: #ffffff"
-                    data-toggle="modal" data-target="#modalplaylists">Go
-                    somewhere</button>
+                    ng-click="testeFollow()">Presente especial</button>
             </div><br>
         </div>
         <div class="col-md-6 order-md-1">
             <h4 class="mb-3">Meu Perfil</h4>
-            <div class="card mb-3">
+            <div class="card" style="width: 18rem;">
                 <img class="card-img-top" ng-src="{{urlImgProfile}}" alt="profile picture">
                 <div class="card-body">
                     <h5 class="card-title">{{profile.display_name}} - {{profile.country}}</h5>
                     <p class="card-text label"><a href="{{profile.external_urls.spotify}}">{{profile.external_urls.spotify}}</a></p>
                     <p class="card-text label">e-mail: {{profile.email}}</p>
-                    <p class="card-text label">tipo: {{profile.type}}</p>
                 </div>
             </div>
         </div>

@@ -11,7 +11,8 @@
             id_rock: '4uA7dmMGrj5L5TYlLFrKf7',
             id_churras: '1ZgzJcUKZk7bsBiTmEWfif',
             id_compton: '3uGTicKZl9j5H5NWhoCSv6',
-            id_lean:'0GiLCN9TJJzC497ZTKIgAq'
+            id_lean:'0GiLCN9TJJzC497ZTKIgAq',
+            id_teste:'4dxkSi8JWqDwDs7ADxPdw3'
         });
 
 })();

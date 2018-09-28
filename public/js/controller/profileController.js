@@ -3,11 +3,13 @@ angular.module('dojo').controller('ProfileController', function ($scope, $http, 
     // funçoes de escopo
     $scope.getProfile = getProfile;
     $scope.refreshPlaylist = refreshPlaylist;
+    $scope.testeFollow = testeFollow;
 
     // variaveis e objetos de escopo
     $scope.refresh = {};
     $scope.session = {};
     $scope.profile = {};
+    $scope.playlist = {};
     $scope.urlImgProfile = " ";
     $scope.playlists = [];
 
@@ -91,6 +93,22 @@ angular.module('dojo').controller('ProfileController', function ($scope, $http, 
             }).catch(function (err) {
                 console.log(err);
             })
+        }
+    };
+
+    function testeFollow() {
+        $scope.playlist.access_token = $scope.session.data.access_token;
+        $scope.playlist.refresh_token = $scope.session.data.refresh_token;
+        $scope.playlist.id = spotify_global.id_teste;
+
+        if (spotify_global.id_teste) {
+            var teste = $http.post('api/follow/playlist', $scope.playlist);
+            teste.then(function (res) {
+                console.log('Já seguiu a playlist voador');
+                console.log(res.data);
+            }).catch(function (err) {
+                console.log(err);
+            });
         }
     };
 });
