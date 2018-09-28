@@ -1,0 +1,29 @@
+{
+  "name": "spotifyjs",
+  "version": "1.0.0",
+  "description": "server para integrar com api do spotify",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pgsilva/spotifyJs.git"
+  },
+  "author": "pgsilva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pgsilva/spotifyJs/issues"
+  },
+  "homepage": "https://github.com/pgsilva/spotifyJs#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "consign": "^0.1.6",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "querystring": "^0.2.0",
+    "request": "^2.88.0"
+  }
+}

@@ -1,0 +1,48 @@
+var request = require('request'); // "Request" library
+var querystring = require('querystring');
+
+
+var client_id = '09173ed65a9e472fb04d65b67d4bb470'; // Your client id
+var client_secret = '2e5be889c0b74cd7aeb907eb66d895b3'; // Your secret
+var redirect_uri = 'http://localhost:3000/api/callback'; // Your redirect uri
+
+var api = {};
+var teste = { titulo: "ja chegou o disco voador" };
+
+/**
+ * Generates a random string containing numbers and letters
+ * @param  {number} length The length of the string
+ * @return {string} The generated string
+ */
+var generateRandomString = function (length) {
+    var text = '';
+    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+    for (var i = 0; i < length; i++) {
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return text;
+};
+
+var stateKey = 'spotify_auth_state';
+
+api.redirectToLoginSpotify = function (req, res) {
+    console.log("go");
+
+    var state = generateRandomString(16);
+    res.cookie(stateKey, state);
+
+    // a aplicacao precisa de autenticidade 
+    var scope = 'user-read-private user-read-email';
+    res.redirect('https://accounts.spotify.com/authorize?' +
+        querystring.stringify({
+            response_type: 'code',
+            client_id: client_id,
+            scope: scope,
+            redirect_uri: redirect_uri,
+            state: state
+        }));
+
+};
+
+module.exports = api;
