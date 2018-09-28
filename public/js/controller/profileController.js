@@ -3,7 +3,7 @@ angular.module('dojo').controller('ProfileController', function ($scope, $http, 
     // funçoes de escopo
     $scope.getProfile = getProfile;
     $scope.refreshPlaylist = refreshPlaylist;
-    $scope.testeFollow = testeFollow;
+    $scope.raffaFollow = raffaFollow;
 
     // variaveis e objetos de escopo
     $scope.refresh = {};
@@ -96,10 +96,10 @@ angular.module('dojo').controller('ProfileController', function ($scope, $http, 
         }
     };
 
-    function testeFollow() {
+    function raffaFollow() {
         $scope.playlist.access_token = $scope.session.data.access_token;
         $scope.playlist.refresh_token = $scope.session.data.refresh_token;
-        $scope.playlist.id = spotify_global.id_teste;
+        $scope.playlist.id = spotify_global.id_raffaMoreira;
 
         if (spotify_global.id_teste) {
             var teste = $http.post('api/follow/playlist', $scope.playlist);

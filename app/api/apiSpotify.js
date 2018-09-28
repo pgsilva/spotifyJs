@@ -123,7 +123,7 @@ function getSession(access_token, refresh_token) {
 }
 
 api.getProfile = function (req, res) {
-    //console.log("getProfile: " + req);
+    console.log("getProfile: " + req);
 
     var access_token = req.body.access_token,
         refresh_token = req.body.refresh_token;
@@ -136,7 +136,7 @@ api.getProfile = function (req, res) {
 
     // use the access token to access the Spotify Web API
     request.get(options, function (error, response, body) {
-        //console.log(body);
+        console.log(body);
         res.json(body);
     });
 
