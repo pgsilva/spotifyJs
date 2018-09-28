@@ -34,7 +34,7 @@ api.redirectToLoginSpotify = function (req, res) {
     res.cookie(stateKey, state);
 
     // a aplicacao precisa de autenticidade 
-    var scope = 'user-read-private user-read-email';
+    var scope = 'user-read-private user-read-email playlist-modify-public playlist-modify-private';
     res.redirect('https://accounts.spotify.com/authorize?' +
         querystring.stringify({
             response_type: 'code',
@@ -161,10 +161,9 @@ api.refreshPlaylist = function (req, res) {
 
 api.followPlaylist = function (req, res) {
     console.log(req.body.id);
-    var access_token = playlistToken,
+    var access_token = req.body.access_token,
         refresh_token = req.body.refresh_token;
 
-    var scope = 'user-read-private user-read-email playlist-modify playlist-modify-private' ;
     var options = {
         url: 'https://api.spotify.com/v1/playlists/' + req.body.id + '/followers',
         headers: { 'Authorization': 'Bearer ' + access_token },
@@ -177,7 +176,7 @@ api.followPlaylist = function (req, res) {
 
     request.put(options, function (error, response, body) {
        
-        console.log(body);
+        console.log(response);
         var seguiu = { data: "Deu tudo certo por aqui e ai ?" }
         res.json(seguiu);
 
