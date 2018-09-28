@@ -86,13 +86,13 @@ api.redirectToApp = function (req, res) {
 
                 // use the access token to access the Spotify Web API
                 request.get(options, function (error, response, body) {
-                    console.log(body);
+                    //console.log(body);
                 });
 
                 // we can also pass the token to the browser to make requests from there
                 res.redirect('/#/profile');
-                
-                getSession(access_token, refresh_token );
+
+                getSession(access_token, refresh_token);
 
             } else {
                 res.redirect('/#' +
@@ -104,19 +104,58 @@ api.redirectToApp = function (req, res) {
     }
 };
 
-api.getSessionUp = function(req, res){
-    if(resultSeassion){
+api.getSessionUp = function (req, res) {
+    if (resultSeassion) {
         res.json(resultSeassion);
     }
 };
 
-function getSession(access_token, refresh_token){
-    
-    resultSeassion = {"refresh_token" :refresh_token,
-                       "access_token" :access_token};
+function getSession(access_token, refresh_token) {
 
-    console.log(" OLHAAAAAA AQUIIIIIIIII " + resultSeassion.access_token );
+    resultSeassion = {
+        "refresh_token": refresh_token,
+        "access_token": access_token
+    };
+
+    console.log(" OLHA AQUI " + resultSeassion.access_token);
     return resultSeassion;
 }
+
+api.getProfile = function (req, res) {
+    console.log("getProfile: " + req);
+
+    var access_token = req.body.access_token,
+        refresh_token = req.body.refresh_token;
+
+    var options = {
+        url: 'https://api.spotify.com/v1/me',
+        headers: { 'Authorization': 'Bearer ' + access_token },
+        json: true
+    };
+
+    // use the access token to access the Spotify Web API
+    request.get(options, function (error, response, body) {
+        console.log(body);
+        res.json(body);
+    });
+
+};
+
+api.refreshPlaylist = function (req, res) {
+
+    var access_token = req.body.access_token,
+        refresh_token = req.body.refresh_token;
+
+    var options = {
+        url: 'https://api.spotify.com/v1/users/'+ req.body.id + '/playlists',
+        headers: { 'Authorization': 'Bearer ' + access_token },
+        json: true
+    };
+    // use the access token to access the Spotify Web API
+    request.get(options, function (error, response, body) {
+        console.log(body);
+        res.json(body);
+    });
+};
 
 module.exports = api;

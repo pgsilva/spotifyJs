@@ -6,4 +6,9 @@ module.exports = function (app) {
     app.get('/api/callback', api.redirectToApp);
     app.get('/api/seassion', api.getSessionUp);
 
+    app.post('/api/profile', api.getProfile);
+
+
+    //config de rotas de refresh
+    app.post('/api/refresh/playlist', api.refreshPlaylist);
 };

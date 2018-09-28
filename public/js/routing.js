@@ -18,7 +18,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                     templateUrl: '../views/spot/profile.html',
                     controller: 'ProfileController'
                 },
-                "navbar": { templateUrl: '../views/navbar.html' }
+               // "navbar": { templateUrl: '../views/navbar.html' }
             }
         });
 
