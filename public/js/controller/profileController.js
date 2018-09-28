@@ -42,6 +42,7 @@ angular.module('dojo').controller('ProfileController', function ($scope, $http, 
                     $scope.urlImgProfile = res.data.images[0].url;
                 };
 
+                refreshPlaylist();
             }).catch(function (err) {
                 console.log(err);
             });
@@ -60,7 +61,32 @@ angular.module('dojo').controller('ProfileController', function ($scope, $http, 
             var playlistglobal = $http.post('api/refresh/playlist', $scope.refresh);
             playlistglobal.then(function (res) {
                 console.log('Já chegou a playlist voador');
-                console.log(res);
+                angular.forEach(res.data.items, function (val, key) {
+                    switch (val.id) {
+                        case spotify_global.id_hooray:
+                            $scope.playlists.push(val);
+                            break;
+                        case spotify_global.id_brilhantina:
+                            $scope.playlists.push(val);
+                            break;
+                        case spotify_global.id_brasileiragem:
+                            $scope.playlists.push(val);
+                            break;
+                        case spotify_global.id_rock:
+                            $scope.playlists.push(val);
+                            break;
+                        case spotify_global.id_churras:
+                            $scope.playlists.push(val);
+                            break;
+                        case spotify_global.id_compton:
+                            $scope.playlists.push(val);
+                            break;
+                        case spotify_global.id_lean:
+                            $scope.playlists.push(val);
+                            break;
+                    }
+                });
+                console.log($scope.playlists);
 
             }).catch(function (err) {
                 console.log(err);
