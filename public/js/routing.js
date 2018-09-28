@@ -15,7 +15,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             url: '/profile',
             views: {
                 "body": {
-                    templateUrl: '../views/filme/profile.html',
+                    templateUrl: '../views/spot/profile.html',
                     controller: 'ProfileController'
                 },
                 "navbar": { templateUrl: '../views/navbar.html' }
