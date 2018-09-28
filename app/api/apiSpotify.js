@@ -7,7 +7,7 @@ var client_secret = '2e5be889c0b74cd7aeb907eb66d895b3'; // Your secret
 var redirect_uri = 'http://localhost:3000/api/callback'; // Your redirect uri
 
 var api = {};
-var teste = { titulo: "ja chegou o disco voador" };
+var resultSeassion = "";
 
 /**
  * Generates a random string containing numbers and letters
@@ -87,11 +87,13 @@ api.redirectToApp = function (req, res) {
                 // use the access token to access the Spotify Web API
                 request.get(options, function (error, response, body) {
                     console.log(body);
-                    res.json(body);
                 });
 
                 // we can also pass the token to the browser to make requests from there
                 res.redirect('/#/profile');
+                
+                getSession(access_token, refresh_token );
+
             } else {
                 res.redirect('/#' +
                     querystring.stringify({
@@ -101,5 +103,20 @@ api.redirectToApp = function (req, res) {
         });
     }
 };
+
+api.getSessionUp = function(req, res){
+    if(resultSeassion){
+        res.json(resultSeassion);
+    }
+};
+
+function getSession(access_token, refresh_token){
+    
+    resultSeassion = {"refresh_token" :refresh_token,
+                       "access_token" :access_token};
+
+    console.log(" OLHAAAAAA AQUIIIIIIIII " + resultSeassion.access_token );
+    return resultSeassion;
+}
 
 module.exports = api;

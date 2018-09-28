@@ -4,7 +4,6 @@ module.exports = function (app) {
     //config de rotas
     app.get('/api/login', api.redirectToLoginSpotify);
     app.get('/api/callback', api.redirectToApp);
-
-
+    app.get('/api/seassion', api.getSessionUp);
 
 };
