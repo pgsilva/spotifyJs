@@ -30,19 +30,17 @@
                 <button class="btn btn-lg btn-block butaologin" type="button" style="background-color: #1ED760; color: #ffffff"
                     data-toggle="modal" data-target="#modalplaylists">Go
                     somewhere</button>
-            </div>
+            </div><br>
         </div>
         <div class="col-md-6 order-md-1">
-                <h4 class="mb-3">Meu Perfil</h4>
-            <div class="row meu-card">
-                <div class="card mb-3">
-                    <img class="card-img-top" ng-src="{{urlImgProfile}}" alt="profile picture">
-                    <div class="card-body">
-                        <h5 class="card-title">{{profile.display_name}} - {{profile.country}}</h5>
-                        <p class="card-text label"><a href="{{profile.external_urls.spotify}}">{{profile.external_urls.spotify}}</a></p>
-                        <p class="card-text label">e-mail: {{profile.email}}</p>
-                        <p class="card-text label">tipo: {{profile.type}}</p>
-                    </div>
+            <h4 class="mb-3">Meu Perfil</h4>
+            <div class="card mb-3">
+                <img class="card-img-top" ng-src="{{urlImgProfile}}" alt="profile picture">
+                <div class="card-body">
+                    <h5 class="card-title">{{profile.display_name}} - {{profile.country}}</h5>
+                    <p class="card-text label"><a href="{{profile.external_urls.spotify}}">{{profile.external_urls.spotify}}</a></p>
+                    <p class="card-text label">e-mail: {{profile.email}}</p>
+                    <p class="card-text label">tipo: {{profile.type}}</p>
                 </div>
             </div>
         </div>
