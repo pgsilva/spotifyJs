@@ -25,7 +25,7 @@ angular.module('dojo').controller('ProfileController', function ($scope, $http, 
             console.log('Feita com Sucesso!');
             $scope.session = res;
             if (!res) {
-                $window.location.href = 'http://localhost:3000/#/'
+               //$window.location.href = 'http://localhost:3000/#/'
             }
             console.log($scope.session);
 
