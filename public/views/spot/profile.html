@@ -20,7 +20,7 @@
                     <h5 ng-if="!profile.display_name && !lilraff" class="card-title">Meu Consagrado</h5>
                     <h5 ng-if="lilraff" class="card-title">Raffa Moreira TRAPSTAR</h5>
                     <p ng-if="!lilraff" class="card-text label">
-                        <a href="{{profile.external_urls.spotify}}">{{profile.external_urls.spotify}}</a>
+                        <button class="btn btn-lg btn-block butaologin" type="button" style="background-color: #1ED760; color: #ffffff; " ng-click="verPerfil(profile.external_urls.spotify)">Ver Perfil</button>
                     </p>
                     <p ng-if="lilraff" class="card-text label">
                         rafa moreira mano/ skr skr skr/ 777/ gang gang/ lil raff bro/ swag mano/ fernando clothing nego
@@ -60,11 +60,12 @@
             <br>
             <div class="input-group">
                 <button class="btn btn-lg btn-block butaologin" type="button" style="background-color: #1ED760; color: #ffffff" ng-click="raffaFollow()">Presente aleatório</button>
-            </div><br>
+            </div>
+            <br>
             <div class="progress" ng-if="followraff">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0"
-                        aria-valuemax="100" style="width: 100%"></div>
-                </div>
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0"
+                    aria-valuemax="100" style="width: 100%"></div>
+            </div>
             <br>
         </div>
 
