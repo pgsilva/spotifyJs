@@ -4,8 +4,8 @@ var querystring = require('querystring');
 
 var client_id = '09173ed65a9e472fb04d65b67d4bb470'; // Your client id
 var client_secret = '2e5be889c0b74cd7aeb907eb66d895b3'; // Your secret
-//var redirect_uri = 'http://localhost:3000/api/callback'; // Your redirect uri
-var redirect_uri = 'https://spotifynodejs.herokuapp.com/api/callback';
+var redirect_uri = 'http://localhost:3000/api/callback'; // Your redirect uri
+//var redirect_uri = 'https://spotifynodejs.herokuapp.com/api/callback';
 var playlistToken = 'BQCc621aQeoE-6II90df-G3gvyLkXl4bjGuv266mlJ3gKnb2idODYqLuCYPC3KWHcrTOk_BoMZxlvJTe_cDAPbH_Lp_p13KGJvFFedt3x1R231iDlshAX0al5oTsBr-wiNe_ZjDwSqaYTOmaepRoscaYUH0WrmoPFioJ_q4nujtZ5YbgEMTluZZs4nBodCXIZXjhcnaeIdi1jm8XKHf8uPiXIwhzvnIOClU';
 
 var api = {};
