@@ -176,7 +176,7 @@ api.followPlaylist = function (req, res) {
 
     request.put(options, function (error, response, body) {
        
-        console.log(response);
+        console.log(body);
         var seguiu = { data: "Deu tudo certo por aqui e ai ?" }
         res.json(seguiu);
 

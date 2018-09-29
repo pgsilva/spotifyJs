@@ -2,42 +2,70 @@
 <div class="container">
     <div class="py-5 text-center">
         <img class="d-block mx-auto mb-4" src="../../img/logospot.png" alt="" width="72" height="72">
-        <h2>SpotifyJs</h2>
-        <p class="lead">Valeu por ter acessado! Fique livre pra escolher <b>the best playlist in the world</b>, ou só
-            pra dar uma olhada. #mec</p>
+        <h2>Eai {{profile.display_name}} !</h2>
+        <p class="lead">Valeu por ter acessado o SpotifyJs! Fique livre pra escolher
+            <b>the best playlist in the world</b>, ou só pra dar uma olhada. #mec
+            <br>É só clicar na playlist, seguir e depois olhar seu APP !</p>
     </div>
 
     <div class="row">
-        <div class="col-md-6 order-md-2 mb-6">
-            <h4 class="d-flex justify-content-between align-items-center mb-3">
-                <span class="text-muted">Escolha <b>the best playlist in the world.</b></span>
-            </h4>
-            <div class="list-group" style="overflow:auto; height:370px;">
-
-                <a href="#" ng-repeat="p in playlists" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">{{p.name}}</h5>
-                        <small>{{p.tracks.total}} músicas</small>
-                    </div>
-                    <small>the best playlist in the world.</small>
-                </a>
-            </div><br>
-
-
-            <div class="input-group">
-                <button class="btn btn-lg btn-block butaologin" type="button" style="background-color: #1ED760; color: #ffffff"
-                    ng-click="raffaFollow()">Presente aleatório</button>
-            </div><br>
-        </div>
         <div class="col-md-6 order-md-1">
-            <h4 class="mb-3">Meu Perfil</h4>
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" ng-src="{{urlImgProfile}}" alt="profile picture">
+            <h4 ng-if="!lilraff" class="mb-3">Meu Perfil</h4>
+            <h4 ng-if="lilraff" class="mb-3">Acaba de Seguir RAFFAA MOREIRAAA !!</h4>
+            <div class="card" style="width: 20rem;">
+                <img ng-if="!lilraff" style="background-color: #ffffff" class="card-img-top" ng-src="{{urlImgProfile}}" alt="profile picture">
+                <img ng-if="lilraff" style="background-color: #ffffff" class="card-img-top" src="../../img/lilraff.jpg" alt="profile picture">
                 <div class="card-body">
-                    <h5 class="card-title">{{profile.display_name}} - {{profile.country}}</h5>
-                    <p class="card-text label"><a href="{{profile.external_urls.spotify}}">{{profile.external_urls.spotify}}</a></p>
-                    <p class="card-text label">e-mail: {{profile.email}}</p>
+                    <h5 ng-if="profile.display_name && !lilraff" class="card-title">{{profile.display_name}} - {{profile.country}}</h5>
+                    <h5 ng-if="!profile.display_name && !lilraff" class="card-title">Meu Consagrado</h5>
+                    <h5 ng-if="lilraff" class="card-title">Raffa Moreira TRAPSTAR</h5>
+                    <p ng-if="!lilraff" class="card-text label">
+                        <a href="{{profile.external_urls.spotify}}">{{profile.external_urls.spotify}}</a>
+                    </p>
+                    <p ng-if="lilraff" class="card-text label">
+                        rafa moreira mano/ skr skr skr/ 777/ gang gang/ lil raff bro/ swag mano/ fernando clothing nego
+                    </p>
                 </div>
             </div>
+            <br>
+            <br>
         </div>
+        <div class="col-md-6 order-md-2 mb-6">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-muted">Escolha
+                    <b>the best playlist in the world.</b>
+                </span>
+            </h4>
+            <div class="list-group" style="overflow:auto; height:410px;">
+                <a ng-click="followPlaylist(p, $index)" ng-repeat="p in playlists" class="list-group-item list-group-item-action flex-column align-items-start">
+
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{p.name}}</h5>
+                        <h4>
+                            <span class="badge badge-secondary">Follow</span>
+                        </h4>
+                    </div>
+                    <small>the best playlist in the world.</small>
+                    <br>
+                    <b>
+                        <small>{{p.tracks.total}} músicas</small>
+                    </b>
+                    <br>
+                    <div ng-if="progress[$index]" class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0"
+                            aria-valuemax="100" style="width: 100%"></div>
+                    </div>
+                </a>
+            </div>
+            <br>
+            <div class="input-group">
+                <button class="btn btn-lg btn-block butaologin" type="button" style="background-color: #1ED760; color: #ffffff" ng-click="raffaFollow()">Presente aleatório</button>
+            </div><br>
+            <div class="progress" ng-if="followraff">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0"
+                        aria-valuemax="100" style="width: 100%"></div>
+                </div>
+            <br>
+        </div>
+
     </div>

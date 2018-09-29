@@ -27,9 +27,16 @@ body {
 .lh-condensed { line-height: 1.25; }
 
 .label{
- font-size: 12px;
+ font-size: 14px;
 }
 
+.span-novidade{
+  color:#ffffff;
+  background-color: #adb5bd;
+  padding: 8px;
+  border-radius: 15px;
+  margin: 0px !important;
+}
 
 .butaologin{
 	padding: 1px 15px 3px 2px;

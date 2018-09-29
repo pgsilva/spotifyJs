@@ -1,9 +1,10 @@
-angular.module('dojo').controller('ProfileController', function ($scope, $http, spotify_global) {
+angular.module('dojo').controller('ProfileController', function ($scope, $http, spotify_global, $window) {
 
     // funçoes de escopo
     $scope.getProfile = getProfile;
     $scope.refreshPlaylist = refreshPlaylist;
     $scope.raffaFollow = raffaFollow;
+    $scope.followPlaylist = followPlaylist;
 
     // variaveis e objetos de escopo
     $scope.refresh = {};
@@ -12,6 +13,9 @@ angular.module('dojo').controller('ProfileController', function ($scope, $http, 
     $scope.playlist = {};
     $scope.urlImgProfile = " ";
     $scope.playlists = [];
+    $scope.progress = [];
+    $scope.followraff = false;
+    $scope.lilraff = false;
 
     init();
 
@@ -20,6 +24,9 @@ angular.module('dojo').controller('ProfileController', function ($scope, $http, 
         promise.then(function (res) {
             console.log('Feita com Sucesso!');
             $scope.session = res;
+            if (!res) {
+                $window.location.href = 'http://localhost:3000/#/'
+            }
             console.log($scope.session);
 
             if ($scope.session.data) {
@@ -42,6 +49,8 @@ angular.module('dojo').controller('ProfileController', function ($scope, $http, 
 
                 if (res.data.images.length > 0) {
                     $scope.urlImgProfile = res.data.images[0].url;
+                } else {
+                    $scope.urlImgProfile = "../../img/user.png"
                 };
 
                 refreshPlaylist();
@@ -67,28 +76,27 @@ angular.module('dojo').controller('ProfileController', function ($scope, $http, 
                     switch (val.id) {
                         case spotify_global.id_hooray:
                             $scope.playlists.push(val);
+                            $scope.progress.push(false);
                             break;
                         case spotify_global.id_brilhantina:
                             $scope.playlists.push(val);
+                            $scope.progress.push(false);
                             break;
                         case spotify_global.id_brasileiragem:
                             $scope.playlists.push(val);
+                            $scope.progress.push(false);
                             break;
                         case spotify_global.id_rock:
                             $scope.playlists.push(val);
-                            break;
-                        case spotify_global.id_churras:
-                            $scope.playlists.push(val);
-                            break;
-                        case spotify_global.id_compton:
-                            $scope.playlists.push(val);
+                            $scope.progress.push(false);
                             break;
                         case spotify_global.id_lean:
                             $scope.playlists.push(val);
+                            $scope.progress.push(false);
                             break;
                     }
                 });
-                console.log($scope.playlists);
+                console.log($scope.progress);
 
             }).catch(function (err) {
                 console.log(err);
@@ -97,6 +105,7 @@ angular.module('dojo').controller('ProfileController', function ($scope, $http, 
     };
 
     function raffaFollow() {
+        $scope.followraff = true;
         $scope.playlist.access_token = $scope.session.data.access_token;
         $scope.playlist.refresh_token = $scope.session.data.refresh_token;
         $scope.playlist.id = spotify_global.id_raffaMoreira;
@@ -104,8 +113,32 @@ angular.module('dojo').controller('ProfileController', function ($scope, $http, 
         if (spotify_global.id_teste) {
             var teste = $http.post('api/follow/playlist', $scope.playlist);
             teste.then(function (res) {
+                console.log('raffa moreira mano');
+                $scope.followraff = false;
+                $scope.lilraff = true;
+                console.log(res.data);
+
+            }).catch(function (err) {
+                console.log(err);
+            });
+            alert("Obrigado por entrar na brincadeira!");
+        }
+    };
+
+    function followPlaylist(play, index) {
+        $scope.progress[index] = true;
+
+        $scope.playlist.access_token = $scope.session.data.access_token;
+        $scope.playlist.refresh_token = $scope.session.data.refresh_token;
+        $scope.playlist.id = play.id;
+
+        if ($scope.playlist.id) {
+            var teste = $http.post('api/follow/playlist', $scope.playlist);
+            teste.then(function (res) {
                 console.log('Já seguiu a playlist voador');
                 console.log(res.data);
+                $scope.progress[index] = false;
+                $scope.lilraff = false;
             }).catch(function (err) {
                 console.log(err);
             });
