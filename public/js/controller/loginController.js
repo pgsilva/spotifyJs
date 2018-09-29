@@ -6,8 +6,8 @@ angular.module('dojo').controller('LoginController', function ($scope, $http, $w
 
     function login() {
         console.log("Iniciando Integração com Spotify");
-       //$window.location.href = 'http://localhost:3000/api/login';
-       $window.location.href = 'https://spotifynodejs.herokuapp.com/api/login';
+       $window.location.href = 'http://localhost:3000/api/login';
+        // $window.location.href = 'https://spotifynodejs.herokuapp.com/api/login';
         /*var promise = $http.get('/api/login');
         promise.then(function (res) {
             console.log('Feita com Sucesso!');

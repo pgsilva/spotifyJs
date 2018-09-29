@@ -5,6 +5,7 @@ angular.module('dojo').controller('ProfileController', function ($scope, $http, 
     $scope.refreshPlaylist = refreshPlaylist;
     $scope.raffaFollow = raffaFollow;
     $scope.followPlaylist = followPlaylist;
+    $scope.verPerfil = verPerfil;
 
     // variaveis e objetos de escopo
     $scope.refresh = {};
@@ -139,9 +140,14 @@ angular.module('dojo').controller('ProfileController', function ($scope, $http, 
                 console.log(res.data);
                 $scope.progress[index] = false;
                 $scope.lilraff = false;
+                alert("Valeu pelo follow, é só ir la pro Spotify agora");
             }).catch(function (err) {
                 console.log(err);
             });
         }
+    };
+
+    function verPerfil(url){
+        $window.location.href = url;
     };
 });
