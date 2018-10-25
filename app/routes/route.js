@@ -1,5 +1,6 @@
 module.exports = function (app) {
     var api = app.api.apiSpotify;
+    var apiMysql = app.api.apiMysql;
 
     //config de rotas
     app.get('/api/login', api.redirectToLoginSpotify);
@@ -11,4 +12,7 @@ module.exports = function (app) {
 
     //config de rotas de refresh
     app.post('/api/refresh/playlist', api.refreshPlaylist);
+
+    //get mysql
+    app.get('/api/mysql/select', apiMysql.select);
 };
